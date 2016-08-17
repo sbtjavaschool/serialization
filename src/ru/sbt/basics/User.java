@@ -3,10 +3,11 @@ package ru.sbt.basics;
 import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
+import java.io.Serializable;
 
-public class User extends Human implements Externalizable {
-    private String login;
-    private transient Password password;
+public class User extends Human implements Serializable {
+    private final String login;
+    private final Password password;
 
     public User() {
         this("l", "s");
@@ -33,27 +34,7 @@ public class User extends Human implements Externalizable {
         return login + " " + password.getValue() + "," + getRace();
     }
 
-    @Override
-    public void writeExternal(java.io.ObjectOutput out) {
-        try {
-            System.out.println("User.writeObject");
-            out.writeUTF(login);
-            out.writeUTF(password.getValue());
-            out.writeUTF(getRace());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        System.out.println("User.readObject");
-        String login = in.readUTF();
-        String password = in.readUTF();
-        String race = in.readUTF();
-
-        this.login = login;
-        this.password = new Password(password);
-        this.race = race;
+    public Object writeReplace() {
+        return new UserDto(login, password.getValue());
     }
 }

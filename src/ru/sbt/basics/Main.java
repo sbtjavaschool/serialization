@@ -4,8 +4,8 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-//        serialize();
-        System.out.println("___________________");
+        serialize();
+//        System.out.println("___________________");
         User user = deserialize();
         System.out.println(user);
     }

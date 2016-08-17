@@ -20,6 +20,10 @@ public class Instrument implements Serializable {
         return price;
     }
 
+    private Object writeReplace() throws ObjectStreamException {
+        return new Instrument(name, 0);
+    }
+
     private Object readResolve() throws ObjectStreamException {
         return name.get();
     }
