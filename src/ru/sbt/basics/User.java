@@ -1,9 +1,8 @@
-package ru.sbt;
+package ru.sbt.basics;
 
 import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
-import java.io.Serializable;
 
 public class User extends Human implements Externalizable {
     private String login;

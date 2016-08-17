@@ -1,4 +1,4 @@
-package ru.sbt;
+package ru.sbt.basics;
 
 import java.io.*;
 
